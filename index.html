@@ -1007,13 +1007,40 @@
       .nav-links { display: none; }
       .nav-toggle { display: flex; }
       .nav-links.open {
-        display: flex; flex-direction: column;
-        position: fixed; inset: 0; top: 64px;
-        background: rgba(8,6,8,0.98);
+        display: flex !important; flex-direction: column;
+        position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+        background: #080608;
         align-items: center; justify-content: center;
-        gap: 36px; z-index: 999;
+        gap: 0; z-index: 9999;
+        overflow: hidden;
+        animation: menuFadeIn 0.15s ease forwards;
       }
-      .nav-links.open a { font-size: 1rem; }
+      @keyframes menuFadeIn {
+        from { opacity: 0; }
+        to   { opacity: 1; }
+      }
+      .nav-links.open li {
+        border-bottom: 1px solid rgba(196,149,106,0.15);
+        width: 80%; text-align: center;
+        padding: 20px 0;
+      }
+      .nav-links.open li:last-child { border-bottom: none; }
+      .nav-links.open a {
+        font-size: 1rem;
+        letter-spacing: 0.32em;
+        color: var(--ivory);
+        text-transform: uppercase;
+      }
+      .nav-links.open a::after { display: none; }
+      /* Hamburger → X animation */
+      .nav-toggle.active .bar1 { transform: translateY(7px) rotate(45deg); }
+      .nav-toggle.active .bar2 { opacity: 0; transform: scaleX(0); }
+      .nav-toggle.active .bar3 { transform: translateY(-7px) rotate(-45deg); }
+      .nav-toggle .bar { transition: transform 0.3s ease, opacity 0.3s ease; }
+      body.menu-open {
+        position: fixed;
+        width: 100%;
+      }
       .nav-social { display: none; }
       .wrap { padding: 0 24px; }
       .hero-content { padding: 0 24px; }
@@ -1060,7 +1087,7 @@
       }
       /* Legal column — full width on mobile */
       .footer-col-legal {
-        padding: 28px 0 0 0 !important;
+        padding: 28px 0 40px 0 !important;
         border-right: none !important;
         border-top: 1px solid var(--border);
         grid-column: 1 / -1;
@@ -1136,8 +1163,10 @@
         <svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
       </a>
     </div>
-    <div class="nav-toggle" id="navToggle">
-      <span></span><span></span><span></span>
+    <div class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+      <span class="bar bar1"></span>
+      <span class="bar bar2"></span>
+      <span class="bar bar3"></span>
     </div>
   </nav>
 
@@ -1687,11 +1716,37 @@
     document.getElementById('copy-year').textContent = new Date().getFullYear();
 
     /* ── MOBILE NAV ────────────────────────────────────────────── */
-    document.getElementById('navToggle').addEventListener('click', () => {
-      document.getElementById('navLinks').classList.toggle('open');
+    const navToggle = document.getElementById('navToggle');
+    const navLinks  = document.getElementById('navLinks');
+
+    let scrollY = 0;
+    function openMenu() {
+      scrollY = window.scrollY;
+      document.body.style.top = `-${scrollY}px`;
+      navLinks.classList.add('open');
+      navToggle.classList.add('active');
+      document.body.classList.add('menu-open');
+    }
+    function closeMenu() {
+      navLinks.classList.remove('open');
+      navToggle.classList.remove('active');
+      document.body.classList.remove('menu-open');
+      document.body.style.top = '';
+      window.scrollTo(0, scrollY);
+    }
+
+    navToggle.addEventListener('click', () => {
+      navLinks.classList.contains('open') ? closeMenu() : openMenu();
     });
+
+    // Close when a nav link is tapped
     document.querySelectorAll('#navLinks a').forEach(a => {
-      a.addEventListener('click', () => document.getElementById('navLinks').classList.remove('open'));
+      a.addEventListener('click', closeMenu);
+    });
+
+    // Close when tapping outside the menu (on the overlay)
+    navLinks.addEventListener('click', (e) => {
+      if (e.target === navLinks) closeMenu();
     });
 
     /* ── SCROLL REVEAL ─────────────────────────────────────────── */
