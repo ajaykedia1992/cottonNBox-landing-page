@@ -1,0 +1,1775 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CottonNBox — Pure Cotton. Pure Elegance.</title>
+  <meta name="description" content="CottonNBox — Ultra-premium ethnic Indian Kurtis crafted from 100% pure cotton. Rooted in heritage, dressed in luxury." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Didact+Gothic&family=Cormorant:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600&family=Montserrat:wght@200;300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,700&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ═══════════════════════════════════════════════════
+       ROOT TOKENS — Midnight Luxury Palette
+    ═══════════════════════════════════════════════════ */
+    :root {
+      --black:        #080608;
+      --black-rich:   #0D0A0E;
+      --black-soft:   #120F14;
+      --black-card:   #1A161C;
+      --rose-gold:    #C4956A;
+      --rose-light:   #D9B08C;
+      --rose-pale:    #EDD5B8;
+      --rose-glow:    rgba(196,149,106,0.18);
+      --ivory:        #F5F0E8;
+      --ivory-warm:   #EDE5D8;
+      --ivory-deep:   #D9CFC0;
+      --white:        #FFFFFF;
+      --text-primary: #F0EAE0;
+      --text-muted:   rgba(240,234,224,0.55);
+      --text-faint:   rgba(240,234,224,0.28);
+      --border:       rgba(196,149,106,0.18);
+      --border-hover: rgba(196,149,106,0.45);
+
+      --font-display: 'Playfair Display', Georgia, serif;
+      --font-serif:   'Cormorant', Georgia, serif;
+      --font-sans:    'Montserrat', sans-serif;
+
+      --ease-luxury:  cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      --ease-snap:    cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    /* ═══════════════════════════════════════════════════
+       RESET & BASE
+    ═══════════════════════════════════════════════════ */
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body {
+      font-family: var(--font-sans);
+      background: var(--black);
+      color: var(--text-primary);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+    img { display:block; max-width:100%; }
+    a { text-decoration:none; color:inherit; }
+    button { font-family: inherit; }
+
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: var(--black); }
+    ::-webkit-scrollbar-thumb { background: var(--rose-gold); }
+
+    /* ═══════════════════════════════════════════════════
+       CURSOR GLOW (desktop only)
+    ═══════════════════════════════════════════════════ */
+    .cursor-glow {
+      pointer-events: none;
+      position: fixed;
+      width: 400px; height: 400px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(196,149,106,0.07) 0%, transparent 70%);
+      transform: translate(-50%, -50%);
+      z-index: 9999;
+      transition: opacity 0.3s;
+    }
+
+    /* ═══════════════════════════════════════════════════
+       NOISE TEXTURE OVERLAY
+    ═══════════════════════════════════════════════════ */
+    body::before {
+      content: '';
+      position: fixed; inset: 0; z-index: 1;
+      pointer-events: none;
+      opacity: 0.025;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+    }
+
+    /* ═══════════════════════════════════════════════════
+       NAVIGATION
+    ═══════════════════════════════════════════════════ */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 28px 60px;
+      transition: all 0.6s var(--ease-luxury);
+    }
+    nav.scrolled {
+      padding: 16px 60px;
+      background: rgba(8,6,8,0.92);
+      backdrop-filter: blur(24px) saturate(180%);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo-wrap { display: flex; flex-direction: column; gap: 3px; }
+    .nav-logo {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      color: var(--ivory);
+      text-transform: uppercase;
+    }
+    .nav-logo-sub {
+      font-family: var(--font-sans);
+      font-size: 0.5rem;
+      font-weight: 300;
+      letter-spacing: 0.5em;
+      color: var(--rose-gold);
+      text-transform: uppercase;
+    }
+    .nav-links {
+      display: flex; align-items: center; gap: 40px; list-style: none;
+    }
+    .nav-links a {
+      font-size: 0.62rem; font-weight: 400;
+      letter-spacing: 0.28em; text-transform: uppercase;
+      color: var(--text-muted);
+      transition: color 0.3s;
+      position: relative;
+    }
+    .nav-links a::after {
+      content: ''; position: absolute; bottom: -4px; left: 0; right: 0;
+      height: 1px; background: var(--rose-gold);
+      transform: scaleX(0); transform-origin: right;
+      transition: transform 0.4s var(--ease-luxury);
+    }
+    .nav-links a:hover { color: var(--rose-pale); }
+    .nav-links a:hover::after { transform: scaleX(1); transform-origin: left; }
+    .nav-social { display: flex; gap: 20px; align-items: center; }
+    .nav-social a {
+      color: var(--text-muted); transition: color 0.3s, transform 0.3s;
+      display: flex; align-items: center;
+    }
+    .nav-social a:hover { color: var(--rose-light); transform: scale(1.15); }
+    .nav-social svg { width: 16px; height: 16px; fill: currentColor; }
+    .nav-toggle {
+      display: none; flex-direction: column; gap: 6px;
+      cursor: pointer; padding: 4px;
+    }
+    .nav-toggle span {
+      display: block; width: 22px; height: 1px;
+      background: var(--rose-light); transition: all 0.3s;
+    }
+
+    /* ═══════════════════════════════════════════════════
+       HERO
+    ═══════════════════════════════════════════════════ */
+    #hero {
+      position: relative; height: 100vh; min-height: 700px;
+      display: flex; align-items: center; overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute; inset: 0;
+      background-image: url('hero_banner.jpg');
+      background-size: cover; background-position: center 15%;
+      will-change: transform;
+    }
+    .hero-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(
+        105deg,
+        rgba(8,6,8,0.88) 0%,
+        rgba(8,6,8,0.55) 45%,
+        rgba(8,6,8,0.20) 100%
+      );
+    }
+    /* Vignette */
+    .hero-overlay::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse at center, transparent 40%, rgba(8,6,8,0.7) 100%);
+    }
+    .hero-content {
+      position: relative; z-index: 2;
+      padding: 0 60px; max-width: 760px;
+      animation: heroIn 1.6s var(--ease-snap) both;
+    }
+    @keyframes heroIn {
+      from { opacity: 0; transform: translateY(50px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .hero-tag {
+      display: inline-flex; align-items: center; gap: 12px;
+      margin-bottom: 28px;
+    }
+    .hero-tag-line { width: 48px; height: 1px; background: var(--rose-gold); }
+    .hero-tag-text {
+      font-family: var(--font-sans); font-size: 0.6rem; font-weight: 400;
+      letter-spacing: 0.45em; text-transform: uppercase; color: var(--rose-gold);
+    }
+    .hero-title {
+      font-family: var(--font-display);
+      font-size: clamp(3.2rem, 6.5vw, 7rem);
+      font-weight: 400; line-height: 1.02;
+      color: var(--ivory);
+      margin-bottom: 6px;
+      letter-spacing: -0.01em;
+    }
+    .hero-title em {
+      font-style: italic; font-weight: 400;
+      color: transparent;
+      -webkit-text-stroke: 1px var(--rose-gold);
+    }
+    .hero-title-line2 {
+      font-family: var(--font-display);
+      font-size: clamp(3.2rem, 6.5vw, 7rem);
+      font-weight: 700; line-height: 1.02;
+      color: var(--ivory);
+      margin-bottom: 32px;
+      letter-spacing: -0.01em;
+    }
+    .hero-desc {
+      font-family: var(--font-serif);
+      font-size: clamp(1rem, 1.6vw, 1.25rem);
+      font-weight: 300; font-style: italic;
+      color: rgba(240,234,224,0.72);
+      line-height: 1.85; margin-bottom: 48px;
+      max-width: 480px;
+    }
+    .hero-actions { display: flex; align-items: center; gap: 24px; flex-wrap: wrap; }
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 14px;
+      padding: 17px 48px;
+      background: var(--rose-gold);
+      color: var(--black);
+      font-family: var(--font-sans); font-size: 0.65rem;
+      font-weight: 600; letter-spacing: 0.3em; text-transform: uppercase;
+      border: none; cursor: pointer;
+      transition: all 0.4s var(--ease-luxury);
+      position: relative; overflow: hidden;
+    }
+    .btn-primary::before {
+      content: ''; position: absolute; inset: 0;
+      background: var(--rose-light);
+      transform: translateX(-101%);
+      transition: transform 0.4s var(--ease-luxury);
+    }
+    .btn-primary:hover::before { transform: translateX(0); }
+    .btn-primary span { position: relative; z-index: 1; }
+    .btn-primary svg { position: relative; z-index: 1; transition: transform 0.3s; }
+    .btn-primary:hover svg { transform: translateX(5px); }
+    .btn-ghost {
+      display: inline-flex; align-items: center; gap: 12px;
+      padding: 16px 36px;
+      background: transparent;
+      color: var(--rose-pale);
+      border: 1px solid rgba(196,149,106,0.35);
+      font-family: var(--font-sans); font-size: 0.65rem;
+      font-weight: 400; letter-spacing: 0.3em; text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.4s var(--ease-luxury);
+    }
+    .btn-ghost:hover {
+      border-color: var(--rose-gold);
+      background: rgba(196,149,106,0.08);
+      color: var(--rose-light);
+    }
+    .hero-scroll-hint {
+      position: absolute; bottom: 40px; left: 60px;
+      display: flex; align-items: center; gap: 14px;
+      color: var(--text-faint);
+      font-family: var(--font-sans); font-size: 0.55rem;
+      letter-spacing: 0.35em; text-transform: uppercase;
+    }
+    .scroll-line {
+      width: 1px; height: 48px;
+      background: linear-gradient(180deg, var(--rose-gold), transparent);
+      animation: scrollPulse 2s ease-in-out infinite;
+    }
+    @keyframes scrollPulse {
+      0%,100% { opacity: 0.4; transform: scaleY(1); }
+      50%      { opacity: 1;   transform: scaleY(1.2); }
+    }
+    /* Side text */
+    .hero-side-text {
+      position: absolute; right: 40px; top: 50%;
+      transform: translateY(-50%) rotate(90deg);
+      transform-origin: center;
+      font-family: var(--font-sans); font-size: 0.5rem;
+      letter-spacing: 0.45em; text-transform: uppercase;
+      color: var(--text-faint);
+      white-space: nowrap;
+    }
+
+    /* ═══════════════════════════════════════════════════
+       MARQUEE STRIP
+    ═══════════════════════════════════════════════════ */
+    .marquee-strip {
+      background: var(--rose-gold);
+      padding: 13px 0; overflow: hidden;
+    }
+    .marquee-track {
+      display: flex; gap: 0;
+      animation: marquee 30s linear infinite;
+      white-space: nowrap;
+    }
+    .marquee-item {
+      display: inline-flex; align-items: center; gap: 24px;
+      padding: 0 32px;
+      font-family: var(--font-sans); font-size: 0.6rem;
+      font-weight: 600; letter-spacing: 0.32em; text-transform: uppercase;
+      color: var(--black);
+    }
+    .marquee-dot { width: 3px; height: 3px; border-radius: 50%; background: var(--black); opacity: 0.5; }
+    @keyframes marquee {
+      0%   { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    /* ═══════════════════════════════════════════════════
+       SHARED SECTION STYLES
+    ═══════════════════════════════════════════════════ */
+    section { position: relative; }
+    .wrap { max-width: 1240px; margin: 0 auto; padding: 0 60px; }
+    .sec-label {
+      font-family: var(--font-sans); font-size: 0.58rem; font-weight: 400;
+      letter-spacing: 0.45em; text-transform: uppercase;
+      color: var(--rose-gold); margin-bottom: 16px;
+      display: flex; align-items: center; gap: 16px;
+    }
+    .sec-label::before {
+      content: ''; width: 32px; height: 1px; background: var(--rose-gold);
+    }
+    .sec-title {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 3.8vw, 3.4rem);
+      font-weight: 400; line-height: 1.12;
+      color: var(--ivory); margin-bottom: 20px;
+    }
+    .sec-title em { font-style: italic; color: var(--rose-light); }
+    .sec-title strong { font-weight: 700; }
+    .sec-body {
+      font-family: var(--font-serif); font-size: 1.1rem; font-weight: 300;
+      color: var(--text-muted); line-height: 1.9;
+      max-width: 560px;
+    }
+
+    /* ═══════════════════════════════════════════════════
+       COUNTDOWN
+    ═══════════════════════════════════════════════════ */
+    #countdown {
+      padding: 120px 0;
+      background: var(--black-rich);
+      overflow: hidden;
+    }
+    /* Decorative circle */
+    #countdown::before {
+      content: '';
+      position: absolute; top: -200px; right: -200px;
+      width: 600px; height: 600px; border-radius: 50%;
+      border: 1px solid var(--border);
+      pointer-events: none;
+    }
+    #countdown::after {
+      content: '';
+      position: absolute; bottom: -300px; left: -150px;
+      width: 500px; height: 500px; border-radius: 50%;
+      border: 1px solid var(--border);
+      pointer-events: none;
+    }
+    .countdown-inner {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 80px; align-items: center;
+    }
+    .countdown-text .sec-body { margin-bottom: 40px; }
+    .countdown-nums {
+      display: flex; align-items: flex-start; gap: 0;
+    }
+    .cd-unit { flex: 1; text-align: center; }
+    .cd-box {
+      position: relative; padding: 28px 8px;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    .cd-box::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(180deg, rgba(196,149,106,0.06) 0%, transparent 100%);
+    }
+    .cd-num {
+      font-family: var(--font-display);
+      font-size: clamp(3rem, 5vw, 5.5rem);
+      font-weight: 700; line-height: 1;
+      color: var(--ivory);
+      display: block; position: relative; z-index: 1;
+      transition: color 0.2s;
+    }
+    .cd-unit:hover .cd-num { color: var(--rose-light); }
+    .cd-label {
+      font-family: var(--font-sans); font-size: 0.52rem; font-weight: 400;
+      letter-spacing: 0.35em; text-transform: uppercase;
+      color: var(--rose-gold); margin-top: 14px; display: block;
+    }
+    .cd-sep {
+      font-family: var(--font-display); font-size: 3rem;
+      color: var(--border-hover); padding: 28px 4px 0;
+      align-self: flex-start; line-height: 1;
+    }
+    /* Progress bar */
+    .cd-progress-wrap {
+      margin-top: 48px;
+    }
+    .cd-progress-label {
+      display: flex; justify-content: space-between;
+      font-family: var(--font-sans); font-size: 0.58rem;
+      letter-spacing: 0.2em; color: var(--text-faint);
+      margin-bottom: 10px;
+    }
+    .cd-progress-track {
+      height: 1px; background: var(--border);
+      position: relative; overflow: visible;
+    }
+    .cd-progress-fill {
+      height: 100%; background: linear-gradient(90deg, var(--rose-gold), var(--rose-light));
+      transition: width 1s ease;
+      position: relative;
+    }
+    .cd-progress-fill::after {
+      content: ''; position: absolute; right: -4px; top: -3px;
+      width: 7px; height: 7px; border-radius: 50%;
+      background: var(--rose-light);
+      box-shadow: 0 0 10px var(--rose-gold);
+    }
+
+    /* ═══════════════════════════════════════════════════
+       FEATURES — FULL BLEED PANELS
+    ═══════════════════════════════════════════════════ */
+    #features { background: var(--black); }
+    .features-header {
+      padding: 100px 0 60px;
+      text-align: center;
+    }
+    .features-header .sec-label { justify-content: center; }
+    .features-header .sec-label::before { display: none; }
+    .features-header .sec-body { margin: 0 auto; text-align: center; }
+    .features-panels {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+    }
+    .fp {
+      position: relative; overflow: hidden;
+      aspect-ratio: 3/4; cursor: pointer;
+    }
+    .fp img {
+      width: 100%; height: 100%; object-fit: cover;
+      transition: transform 0.9s var(--ease-luxury), filter 0.6s;
+      filter: brightness(0.55) saturate(0.8);
+    }
+    .fp:hover img {
+      transform: scale(1.07);
+      filter: brightness(0.45) saturate(0.6);
+    }
+    /* Number */
+    .fp-num {
+      position: absolute; top: 32px; left: 32px;
+      font-family: var(--font-display); font-size: 0.75rem;
+      font-weight: 400; letter-spacing: 0.2em;
+      color: rgba(196,149,106,0.5);
+      z-index: 2;
+    }
+    .fp-content {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      padding: 48px 36px;
+      background: linear-gradient(0deg, rgba(8,6,8,0.95) 0%, rgba(8,6,8,0.4) 60%, transparent 100%);
+      z-index: 2;
+      transform: translateY(60px);
+      transition: transform 0.6s var(--ease-luxury);
+    }
+    .fp:hover .fp-content { transform: translateY(0); }
+    .fp-icon { font-size: 1.8rem; margin-bottom: 14px; }
+    .fp-line {
+      width: 0; height: 1px; background: var(--rose-gold);
+      margin-bottom: 16px;
+      transition: width 0.6s var(--ease-luxury) 0.1s;
+    }
+    .fp:hover .fp-line { width: 40px; }
+    .fp-name {
+      font-family: var(--font-display); font-size: 1.6rem;
+      font-weight: 500; color: var(--ivory); margin-bottom: 10px;
+    }
+    .fp-text {
+      font-family: var(--font-serif); font-size: 0.95rem;
+      color: rgba(240,234,224,0.65); line-height: 1.7;
+      opacity: 0; transform: translateY(10px);
+      transition: opacity 0.4s 0.2s, transform 0.4s 0.2s;
+    }
+    .fp:hover .fp-text { opacity: 1; transform: translateY(0); }
+
+    /* ═══════════════════════════════════════════════════
+       COLLECTION
+    ═══════════════════════════════════════════════════ */
+    #collection {
+      padding: 130px 0;
+      background: var(--black-soft);
+    }
+    .collection-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 80px; align-items: center;
+    }
+    .col-img-wrap { position: relative; }
+    .col-img-frame {
+      position: relative;
+      padding: 20px;
+    }
+    .col-img-frame::before {
+      content: '';
+      position: absolute; top: 0; left: 0;
+      width: 60%; height: 60%;
+      border-top: 1px solid var(--rose-gold);
+      border-left: 1px solid var(--rose-gold);
+    }
+    .col-img-frame::after {
+      content: '';
+      position: absolute; bottom: 0; right: 0;
+      width: 60%; height: 60%;
+      border-bottom: 1px solid var(--rose-gold);
+      border-right: 1px solid var(--rose-gold);
+    }
+    .col-img-frame img {
+      width: 100%; display: block;
+      filter: brightness(0.92) saturate(0.95);
+      transition: filter 0.5s;
+    }
+    .col-img-frame:hover img { filter: brightness(1) saturate(1); }
+    .col-badge {
+      position: absolute; bottom: -20px; right: 10px;
+      width: 96px; height: 96px;
+      background: var(--rose-gold);
+      border-radius: 50%;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      font-family: var(--font-sans); font-size: 0.5rem;
+      font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--black); text-align: center; line-height: 1.5;
+      box-shadow: 0 0 0 6px var(--black-soft), 0 0 0 7px rgba(196,149,106,0.3);
+    }
+    .col-text .sec-body { margin-bottom: 36px; }
+    .col-list {
+      list-style: none; display: flex; flex-direction: column;
+      gap: 0; margin-bottom: 44px;
+      border-top: 1px solid var(--border);
+    }
+    .col-list li {
+      display: flex; align-items: center; gap: 16px;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--border);
+      font-family: var(--font-sans); font-size: 0.72rem;
+      font-weight: 300; letter-spacing: 0.08em;
+      color: var(--text-muted);
+      transition: color 0.3s, padding-left 0.3s;
+    }
+    .col-list li:hover { color: var(--rose-pale); padding-left: 8px; }
+    .col-list li::before {
+      content: ''; width: 5px; height: 5px; border-radius: 50%;
+      background: var(--rose-gold); flex-shrink: 0;
+    }
+
+    /* ═══════════════════════════════════════════════════
+       PILLARS
+    ═══════════════════════════════════════════════════ */
+    #pillars {
+      padding: 120px 0;
+      background: var(--black);
+    }
+    .pillars-header {
+      text-align: center; margin-bottom: 72px;
+    }
+    .pillars-header .sec-label { justify-content: center; }
+    .pillars-header .sec-label::before { display: none; }
+    .pillars-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 1px; background: var(--border);
+    }
+    .pillar {
+      background: var(--black); padding: 52px 36px;
+      transition: background 0.4s;
+      position: relative; overflow: hidden;
+    }
+    .pillar::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--rose-gold), transparent);
+      transform: scaleX(0); transform-origin: left;
+      transition: transform 0.5s var(--ease-luxury);
+    }
+    .pillar:hover { background: var(--black-card); }
+    .pillar:hover::before { transform: scaleX(1); }
+    .pillar-num {
+      font-family: var(--font-display); font-size: 3.5rem;
+      font-weight: 700; color: var(--border);
+      line-height: 1; margin-bottom: 24px;
+      transition: color 0.4s;
+    }
+    .pillar:hover .pillar-num { color: rgba(196,149,106,0.15); }
+    .pillar-title {
+      font-family: var(--font-display); font-size: 1.15rem;
+      font-weight: 500; color: var(--rose-light);
+      margin-bottom: 14px; letter-spacing: 0.02em;
+    }
+    .pillar-text {
+      font-family: var(--font-serif); font-size: 0.95rem;
+      font-weight: 300; color: var(--text-muted); line-height: 1.8;
+    }
+
+    /* ═══════════════════════════════════════════════════
+       HEALTH BENEFITS
+    ═══════════════════════════════════════════════════ */
+    #health {
+      background: #0a0709;
+      padding-bottom: 100px;
+    }
+    .health-hero {
+      position: relative;
+      height: 480px;
+      background-size: cover;
+      background-position: center 30%;
+      display: flex; align-items: center; justify-content: center;
+      text-align: center;
+      margin-bottom: 80px;
+    }
+    .health-hero-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to bottom, rgba(8,6,8,0.55) 0%, rgba(8,6,8,0.75) 60%, rgba(10,7,9,1) 100%);
+    }
+    .health-hero-inner {
+      position: relative; z-index: 2;
+      text-align: center;
+    }
+    .health-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+    }
+    .health-card {
+      padding: 44px 36px;
+      border: 1px solid var(--border);
+      background: rgba(196,149,106,0.03);
+      transition: background 0.4s, border-color 0.4s;
+      position: relative;
+      overflow: hidden;
+    }
+    .health-card::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--rose-gold), transparent);
+      opacity: 0;
+      transition: opacity 0.4s;
+    }
+    .health-card:hover { background: rgba(196,149,106,0.07); border-color: rgba(196,149,106,0.3); }
+    .health-card:hover::before { opacity: 1; }
+    .hc-icon {
+      font-size: 1.6rem; color: var(--rose-gold);
+      margin-bottom: 20px; display: block;
+    }
+    .hc-title {
+      font-family: var(--font-display);
+      font-size: 1.15rem; font-weight: 500;
+      color: var(--ivory); margin-bottom: 14px;
+      letter-spacing: 0.02em;
+    }
+    .hc-body {
+      font-family: var(--font-serif);
+      font-size: 0.92rem; font-weight: 300;
+      color: var(--text-muted); line-height: 1.85;
+    }
+
+    /* ═══════════════════════════════════════════════════
+       COTTON JOURNEY
+    ═══════════════════════════════════════════════════ */
+    #journey {
+      background: var(--black-rich);
+      padding-bottom: 100px;
+    }
+    .journey-hero {
+      position: relative;
+      height: 480px;
+      background-size: cover;
+      background-position: center 40%;
+      display: flex; align-items: center; justify-content: center;
+      text-align: center;
+      margin-bottom: 80px;
+    }
+    .journey-hero-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to bottom, rgba(8,6,8,0.45) 0%, rgba(8,6,8,0.7) 60%, var(--black-rich) 100%);
+    }
+    .journey-hero-inner {
+      position: relative; z-index: 2;
+      text-align: center;
+    }
+    .journey-timeline {
+      max-width: 860px;
+      margin: 0 auto;
+      position: relative;
+    }
+    .journey-timeline::before {
+      content: '';
+      position: absolute;
+      left: 52px;
+      top: 0; bottom: 0;
+      width: 1px;
+      background: linear-gradient(to bottom, transparent, var(--border) 10%, var(--border) 90%, transparent);
+    }
+    .jt-step {
+      display: flex;
+      gap: 40px;
+      align-items: flex-start;
+      margin-bottom: 56px;
+      position: relative;
+    }
+    .jt-step:last-child { margin-bottom: 0; }
+    .jt-num {
+      font-family: var(--font-display);
+      font-size: 2.2rem; font-weight: 400;
+      color: var(--rose-gold);
+      min-width: 64px;
+      line-height: 1;
+      padding-top: 4px;
+      position: relative;
+      z-index: 1;
+    }
+    .jt-num::after {
+      content: '';
+      position: absolute;
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: var(--rose-gold);
+      right: -24px; top: 14px;
+    }
+    .jt-content {
+      padding: 28px 32px;
+      border: 1px solid var(--border);
+      background: rgba(196,149,106,0.03);
+      flex: 1;
+      transition: border-color 0.3s, background 0.3s;
+    }
+    .jt-content:hover { border-color: rgba(196,149,106,0.25); background: rgba(196,149,106,0.06); }
+    .jt-title {
+      font-family: var(--font-display);
+      font-size: 1.1rem; font-weight: 500;
+      color: var(--ivory); margin-bottom: 12px;
+    }
+    .jt-body {
+      font-family: var(--font-serif);
+      font-size: 0.92rem; font-weight: 300;
+      color: var(--text-muted); line-height: 1.85;
+    }
+    .jt-final .jt-content {
+      border-color: rgba(196,149,106,0.3);
+      background: rgba(196,149,106,0.06);
+    }
+    .jt-final .jt-title { color: var(--rose-light); }
+
+    /* ═══════════════════════════════════════════════════
+       QUOTE
+    ═══════════════════════════════════════════════════ */
+    #quote {
+      padding: 130px 0;
+      background: var(--black-rich);
+      text-align: center;
+      overflow: hidden;
+    }
+    .quote-bg-text {
+      position: absolute; top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      font-family: var(--font-display); font-size: clamp(8rem, 20vw, 18rem);
+      font-weight: 700; font-style: italic;
+      color: transparent; -webkit-text-stroke: 1px rgba(196,149,106,0.05);
+      white-space: nowrap; pointer-events: none; user-select: none;
+      letter-spacing: -0.02em;
+    }
+    .quote-inner { position: relative; z-index: 1; max-width: 820px; margin: 0 auto; padding: 0 60px; }
+    .quote-mark {
+      font-family: var(--font-display); font-size: 5rem;
+      color: var(--rose-gold); opacity: 0.4; line-height: 0.6;
+      display: block; margin-bottom: 32px;
+    }
+    .quote-text {
+      font-family: var(--font-display);
+      font-size: clamp(1.3rem, 2.8vw, 2.1rem);
+      font-weight: 400; font-style: italic;
+      color: var(--ivory); line-height: 1.65;
+      margin-bottom: 36px; letter-spacing: 0.01em;
+    }
+    .quote-rule {
+      width: 60px; height: 1px; background: var(--rose-gold);
+      margin: 0 auto 20px;
+    }
+    .quote-author {
+      font-family: var(--font-sans); font-size: 0.6rem;
+      font-weight: 400; letter-spacing: 0.4em; text-transform: uppercase;
+      color: var(--rose-gold);
+    }
+
+    /* ═══════════════════════════════════════════════════
+       NOTIFY
+    ═══════════════════════════════════════════════════ */
+    #notify {
+      padding: 130px 0;
+      background: var(--black-soft);
+      overflow: hidden;
+    }
+    .notify-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 100px; align-items: center;
+    }
+    .notify-text .sec-body { margin-bottom: 0; }
+    .notify-form-wrap {}
+    .notify-form {
+      display: flex; gap: 0; margin-bottom: 16px;
+    }
+    .notify-input {
+      flex: 1; padding: 18px 24px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border); border-right: none;
+      color: var(--ivory); font-family: var(--font-sans);
+      font-size: 0.78rem; font-weight: 300; outline: none;
+      transition: border-color 0.3s, background 0.3s;
+    }
+    .notify-input::placeholder { color: var(--text-faint); }
+    .notify-input:focus {
+      border-color: var(--rose-gold);
+      background: rgba(196,149,106,0.04);
+    }
+    .notify-btn {
+      padding: 18px 32px;
+      background: var(--rose-gold); color: var(--black);
+      font-family: var(--font-sans); font-size: 0.62rem;
+      font-weight: 600; letter-spacing: 0.28em; text-transform: uppercase;
+      border: none; cursor: pointer;
+      transition: background 0.3s;
+      white-space: nowrap;
+    }
+    .notify-btn:hover { background: var(--rose-light); }
+    .notify-privacy {
+      font-family: var(--font-sans); font-size: 0.6rem;
+      color: var(--text-faint); letter-spacing: 0.08em;
+    }
+    /* Waitlist confirmed state */
+    .waitlist-confirmed {
+      padding: 36px 32px;
+      border: 1px solid var(--border);
+      background: rgba(196,149,106,0.05);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .waitlist-confirmed::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--rose-gold), transparent);
+    }
+    .wc-icon {
+      font-size: 2rem; color: var(--rose-gold);
+      margin-bottom: 16px; letter-spacing: 0.2em;
+    }
+    .wc-title {
+      font-family: var(--font-display);
+      font-size: 1.5rem; font-weight: 500;
+      color: var(--ivory); margin-bottom: 10px;
+    }
+    .wc-sub {
+      font-family: var(--font-serif);
+      font-size: 1rem; font-style: italic;
+      color: var(--text-muted); line-height: 1.7;
+    }
+    .wc-sub span { color: var(--rose-light); font-style: normal; font-weight: 500; }
+    .notify-socials {
+      display: flex; gap: 16px; margin-top: 40px;
+    }
+    .social-btn {
+      display: inline-flex; align-items: center; gap: 10px;
+      padding: 14px 28px;
+      border: 1px solid var(--border); color: var(--text-muted);
+      font-family: var(--font-sans); font-size: 0.6rem;
+      font-weight: 400; letter-spacing: 0.25em; text-transform: uppercase;
+      transition: all 0.3s;
+    }
+    .social-btn:hover {
+      border-color: var(--rose-gold); color: var(--rose-light);
+      background: rgba(196,149,106,0.06);
+    }
+    .social-btn svg { width: 14px; height: 14px; fill: currentColor; }
+
+    /* ═══════════════════════════════════════════════════
+       FOOTER
+    ═══════════════════════════════════════════════════ */
+    footer {
+      background: var(--black-rich);
+      border-top: 1px solid var(--border);
+      padding: 80px 0 36px;
+    }
+    .footer-grid {
+      display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 48px; margin-bottom: 64px;
+    }
+    /* On desktop, footer-cols-mobile acts as a normal fragment (no grid wrapper needed) */
+    .footer-cols-mobile {
+      display: contents;
+    }
+    .footer-brand-desc {
+      font-family: var(--font-serif); font-size: 0.95rem;
+      font-weight: 300; color: var(--text-faint); line-height: 1.9;
+      max-width: 320px; margin: 20px 0 32px;
+    }
+    .footer-social { display: flex; gap: 14px; }
+    .footer-social a {
+      width: 40px; height: 40px; border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--text-faint); transition: all 0.3s;
+    }
+    .footer-social a:hover {
+      border-color: var(--rose-gold); color: var(--rose-light);
+      background: rgba(196,149,106,0.08);
+    }
+    .footer-social svg { width: 15px; height: 15px; fill: currentColor; }
+    .footer-col h4 {
+      font-family: var(--font-sans); font-size: 0.58rem; font-weight: 600;
+      letter-spacing: 0.38em; text-transform: uppercase;
+      color: var(--rose-gold); margin-bottom: 24px;
+    }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+    .footer-col ul li a {
+      font-family: var(--font-sans); font-size: 0.75rem; font-weight: 300;
+      color: var(--text-faint); letter-spacing: 0.06em;
+      transition: color 0.3s;
+    }
+    .footer-col ul li a:hover { color: var(--rose-pale); }
+    .footer-bottom {
+      border-top: 1px solid var(--border); padding-top: 28px;
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: 12px;
+    }
+    .footer-copy {
+      font-family: var(--font-sans); font-size: 0.62rem;
+      color: var(--text-faint); letter-spacing: 0.1em;
+    }
+    .footer-tagline {
+      font-family: var(--font-serif); font-size: 0.88rem;
+      font-style: italic; color: rgba(196,149,106,0.35);
+    }
+
+    /* ═══════════════════════════════════════════════════
+       FLOATING SOCIAL
+    ═══════════════════════════════════════════════════ */
+    .float-social {
+      position: fixed; right: 28px; top: 50%;
+      transform: translateY(-50%);
+      display: flex; flex-direction: column; gap: 10px; z-index: 900;
+    }
+    .float-social a {
+      width: 40px; height: 40px;
+      background: rgba(8,6,8,0.8);
+      border: 1px solid var(--border);
+      backdrop-filter: blur(12px);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--text-faint); transition: all 0.3s;
+    }
+    .float-social a:hover {
+      border-color: var(--rose-gold); color: var(--rose-light);
+      background: rgba(196,149,106,0.1);
+      transform: scale(1.1);
+    }
+    .float-social svg { width: 15px; height: 15px; fill: currentColor; }
+
+    /* ═══════════════════════════════════════════════════
+       SCROLL REVEAL
+    ═══════════════════════════════════════════════════ */
+    .reveal { opacity:0; transform:translateY(30px); transition: opacity 0.9s var(--ease-luxury), transform 0.9s var(--ease-luxury); }
+    .reveal.in { opacity:1; transform:translateY(0); }
+    .reveal-l { opacity:0; transform:translateX(-40px); transition: opacity 0.9s var(--ease-luxury), transform 0.9s var(--ease-luxury); }
+    .reveal-l.in { opacity:1; transform:translateX(0); }
+    .reveal-r { opacity:0; transform:translateX(40px); transition: opacity 0.9s var(--ease-luxury), transform 0.9s var(--ease-luxury); }
+    .reveal-r.in { opacity:1; transform:translateX(0); }
+    .delay-1 { transition-delay: 0.1s; }
+    .delay-2 { transition-delay: 0.2s; }
+    .delay-3 { transition-delay: 0.3s; }
+    .delay-4 { transition-delay: 0.4s; }
+
+    /* ═══════════════════════════════════════════════════
+       RESPONSIVE
+    ═══════════════════════════════════════════════════ */
+    @media (max-width: 1024px) {
+      .countdown-inner { grid-template-columns: 1fr; gap: 60px; }
+      .collection-grid { grid-template-columns: 1fr; gap: 60px; }
+      .col-img-wrap { max-width: 520px; margin: 0 auto; }
+      .pillars-grid { grid-template-columns: repeat(2, 1fr); }
+      .notify-grid { grid-template-columns: 1fr; gap: 60px; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+      .footer-brand { grid-column: 1 / -1; }
+    }
+    @media (max-width: 768px) {
+      nav { padding: 20px 24px; }
+      nav.scrolled { padding: 14px 24px; }
+      .nav-links { display: none; }
+      .nav-toggle { display: flex; }
+      .nav-links.open {
+        display: flex; flex-direction: column;
+        position: fixed; inset: 0; top: 64px;
+        background: rgba(8,6,8,0.98);
+        align-items: center; justify-content: center;
+        gap: 36px; z-index: 999;
+      }
+      .nav-links.open a { font-size: 1rem; }
+      .nav-social { display: none; }
+      .wrap { padding: 0 24px; }
+      .hero-content { padding: 0 24px; }
+      .hero-scroll-hint { left: 24px; }
+      .hero-side-text { display: none; }
+      .features-panels { grid-template-columns: 1fr; }
+      .fp { aspect-ratio: 4/3; }
+      .fp-content { transform: translateY(0); }
+      .fp-text { opacity: 1; transform: translateY(0); }
+      .fp-line { width: 40px; }
+      .pillars-grid { grid-template-columns: 1fr; }
+      /* ── MOBILE FOOTER ── */
+      footer { padding: 56px 0 28px; }
+      .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 0;
+        margin-bottom: 0;
+      }
+      /* Brand block */
+      .footer-brand {
+        padding-bottom: 36px;
+        border-bottom: 1px solid var(--border);
+        margin-bottom: 0;
+      }
+      .footer-brand-desc { max-width: 100%; margin: 16px 0 24px; font-size: 0.88rem; line-height: 1.75; }
+      .footer-social { gap: 10px; }
+      .footer-social a { width: 38px; height: 38px; }
+      /* Explore + Connect side by side */
+      .footer-cols-mobile {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0;
+        border-bottom: 1px solid var(--border);
+      }
+      .footer-col {
+        padding: 28px 0;
+      }
+      .footer-col:first-child {
+        padding-right: 20px;
+        border-right: 1px solid var(--border);
+      }
+      .footer-col:last-child {
+        padding-left: 20px;
+      }
+      /* Legal column — full width on mobile */
+      .footer-col-legal {
+        padding: 28px 0 0 0 !important;
+        border-right: none !important;
+        border-top: 1px solid var(--border);
+        grid-column: 1 / -1;
+      }
+      .footer-col h4 { margin-bottom: 16px; }
+      .footer-col ul { gap: 10px; }
+      .footer-col ul li a { font-size: 0.78rem; }
+      /* Bottom bar */
+      .footer-bottom {
+        flex-direction: column;
+        text-align: center;
+        gap: 6px;
+        padding-top: 22px;
+      }
+      .footer-copy { font-size: 0.6rem; }
+      .footer-tagline { font-size: 0.8rem; }
+      .float-social { display: none; }
+      .cd-num { font-size: 2.8rem; }
+      .countdown-nums { gap: 0; }
+      .notify-form { flex-direction: column; }
+      .notify-input { border-right: 1px solid var(--border); }
+      /* Health & Journey mobile */
+      .health-hero, .journey-hero { height: 340px; }
+      .health-grid { grid-template-columns: 1fr; gap: 1px; }
+      .health-card { padding: 32px 24px; }
+      .journey-timeline::before { left: 44px; }
+      .jt-step { gap: 20px; }
+      .jt-num { font-size: 1.5rem; min-width: 60px; text-align: left; padding-right: 8px; }
+      .jt-num::after { right: -10px; top: 12px; width: 7px; height: 7px; }
+      .jt-content { padding: 18px 18px; }
+    }
+    @media (max-width: 480px) {
+      .hero-title, .hero-title-line2 { font-size: 2.6rem; }
+      .cd-num { font-size: 2.2rem; }
+      .cd-sep { font-size: 2rem; }
+      .notify-socials { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Cursor glow -->
+  <div class="cursor-glow" id="cursorGlow"></div>
+
+  <!-- ── FLOATING SOCIAL ──────────────────────────────────────── -->
+  <div class="float-social">
+    <a href="https://www.instagram.com/cottonnbox_official/" target="_blank" rel="noopener" aria-label="Instagram">
+      <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+    </a>
+    <a href="https://www.facebook.com/cottonnbox" target="_blank" rel="noopener" aria-label="Facebook">
+      <svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+    </a>
+  </div>
+
+  <!-- ── NAVIGATION ────────────────────────────────────────────── -->
+  <nav id="navbar">
+    <div class="nav-logo-wrap">
+      <div class="nav-logo">CottonNBox</div>
+      <div class="nav-logo-sub">Pure Cotton · Pure Elegance</div>
+    </div>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#collection">Collection</a></li>
+      <li><a href="#features">Craft</a></li>
+      <li><a href="#pillars">Heritage</a></li>
+      <li><a href="#countdown">Launch</a></li>
+      <li><a href="#notify">Notify Me</a></li>
+    </ul>
+    <div class="nav-social">
+      <a href="https://www.instagram.com/cottonnbox_official/" target="_blank" rel="noopener" aria-label="Instagram">
+        <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+      </a>
+      <a href="https://www.facebook.com/cottonnbox" target="_blank" rel="noopener" aria-label="Facebook">
+        <svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+      </a>
+    </div>
+    <div class="nav-toggle" id="navToggle">
+      <span></span><span></span><span></span>
+    </div>
+  </nav>
+
+  <!-- ── HERO ──────────────────────────────────────────────────── -->
+  <section id="hero">
+    <div class="hero-bg" id="heroBg"></div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <div class="hero-tag">
+        <div class="hero-tag-line"></div>
+        <span class="hero-tag-text">100% Pure Cotton · Ethnic Indian Kurtis</span>
+      </div>
+      <h1 class="hero-title">Where <em>Heritage</em></h1>
+      <div class="hero-title-line2">Meets Luxury</div>
+      <p class="hero-desc">
+        Handcrafted kurtis born from centuries of Indian artistry.<br>
+        Breathe in the softness. Wear the tradition.
+      </p>
+      <div class="hero-actions">
+        <a href="#countdown" class="btn-primary">
+          <span>Explore the Launch</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <a href="#notify" class="btn-ghost">Join Waitlist</a>
+      </div>
+    </div>
+    <div class="hero-scroll-hint">
+      <div class="scroll-line"></div>
+      Scroll to explore
+    </div>
+    <div class="hero-side-text">CottonNBox — Est. 2025 — India</div>
+  </section>
+
+  <!-- ── MARQUEE ────────────────────────────────────────────────── -->
+  <div class="marquee-strip">
+    <div class="marquee-track">
+      <span class="marquee-item"><span class="marquee-dot"></span>100% Pure Cotton</span>
+      <span class="marquee-item"><span class="marquee-dot"></span>Hand Block Printed</span>
+      <span class="marquee-item"><span class="marquee-dot"></span>Artisan Crafted</span>
+      <span class="marquee-item"><span class="marquee-dot"></span>Ethnic Heritage</span>
+      <span class="marquee-item"><span class="marquee-dot"></span>Ultra Premium</span>
+      <span class="marquee-item"><span class="marquee-dot"></span>Sustainably Made</span>
+      <span class="marquee-item"><span class="marquee-dot"></span>Luxury Kurtis</span>
+      <span class="marquee-item"><span class="marquee-dot"></span>Free Shipping</span>
+      <span class="marquee-item"><span class="marquee-dot"></span>100% Pure Cotton</span>
+      <span class="marquee-item"><span class="marquee-dot"></span>Hand Block Printed</span>
+      <span class="marquee-item"><span class="marquee-dot"></span>Artisan Crafted</span>
+      <span class="marquee-item"><span class="marquee-dot"></span>Ethnic Heritage</span>
+      <span class="marquee-item"><span class="marquee-dot"></span>Ultra Premium</span>
+      <span class="marquee-item"><span class="marquee-dot"></span>Sustainably Made</span>
+      <span class="marquee-item"><span class="marquee-dot"></span>Luxury Kurtis</span>
+      <span class="marquee-item"><span class="marquee-dot"></span>Free Shipping</span>
+    </div>
+  </div>
+
+  <!-- ── COUNTDOWN ─────────────────────────────────────────────── -->
+  <section id="countdown">
+    <div class="wrap">
+      <div class="countdown-inner">
+        <div class="countdown-text">
+          <div class="sec-label reveal">Grand Launch Countdown</div>
+          <h2 class="sec-title reveal delay-1">Something <em>Extraordinary</em><br><strong>is Coming</strong></h2>
+          <p class="sec-body reveal delay-2">
+            The wait is almost over. CottonNBox is preparing to unveil a collection that redefines what Indian cotton luxury means. Be the first to witness it.
+          </p>
+          <div class="cd-progress-wrap reveal delay-3">
+            <div class="cd-progress-label">
+              <span>Launch Progress</span>
+              <span id="progressPct">0%</span>
+            </div>
+            <div class="cd-progress-track">
+              <div class="cd-progress-fill" id="progressFill" style="width:0%"></div>
+            </div>
+          </div>
+        </div>
+        <div class="reveal delay-2">
+          <div class="countdown-nums">
+            <div class="cd-unit">
+              <div class="cd-box"><span class="cd-num" id="cd-days">00</span></div>
+              <span class="cd-label">Days</span>
+            </div>
+            <div class="cd-sep">:</div>
+            <div class="cd-unit">
+              <div class="cd-box"><span class="cd-num" id="cd-hours">00</span></div>
+              <span class="cd-label">Hours</span>
+            </div>
+            <div class="cd-sep">:</div>
+            <div class="cd-unit">
+              <div class="cd-box"><span class="cd-num" id="cd-mins">00</span></div>
+              <span class="cd-label">Mins</span>
+            </div>
+            <div class="cd-sep">:</div>
+            <div class="cd-unit">
+              <div class="cd-box"><span class="cd-num" id="cd-secs">00</span></div>
+              <span class="cd-label">Secs</span>
+            </div>
+          </div>
+          <div style="display:flex;gap:14px;margin-top:40px;flex-wrap:wrap;">
+            <a href="#notify" class="btn-primary">
+              <span>Notify Me at Launch</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+            <a href="https://www.instagram.com/cottonnbox_official/" target="_blank" class="btn-ghost">Follow Us</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FEATURES ──────────────────────────────────────────────── -->
+  <section id="features">
+    <div class="features-header wrap">
+      <div class="sec-label reveal">The CottonNBox Difference</div>
+      <h2 class="sec-title reveal delay-1" style="text-align:center;">Crafted with <em>Soul</em></h2>
+      <p class="sec-body reveal delay-2" style="text-align:center;">
+        Every kurti is a canvas — painted by skilled artisans who have inherited their craft across generations.
+      </p>
+    </div>
+    <div class="features-panels">
+      <div class="fp reveal">
+        <img src="feature_cotton.jpg" alt="Pure Cotton" loading="lazy" />
+        <div class="fp-num">01</div>
+        <div class="fp-content">
+          <div class="fp-icon">🌿</div>
+          <div class="fp-line"></div>
+          <div class="fp-name">Pure Cotton</div>
+          <div class="fp-text">Sourced from the finest cotton fields of India — breathable, soft, and skin-friendly for all seasons.</div>
+        </div>
+      </div>
+      <div class="fp reveal delay-1">
+        <img src="feature_craft.jpg" alt="Block Printing" loading="lazy" />
+        <div class="fp-num">02</div>
+        <div class="fp-content">
+          <div class="fp-icon">🖨️</div>
+          <div class="fp-line"></div>
+          <div class="fp-name">Block Printing</div>
+          <div class="fp-text">Traditional hand block printing techniques passed down through generations of master artisans.</div>
+        </div>
+      </div>
+      <div class="fp reveal delay-2">
+        <img src="feature_model.jpg" alt="Luxury Style" loading="lazy" />
+        <div class="fp-num">03</div>
+        <div class="fp-content">
+          <div class="fp-icon">✦</div>
+          <div class="fp-line"></div>
+          <div class="fp-name">Luxury Style</div>
+          <div class="fp-text">Where timeless Indian aesthetics meet contemporary luxury — designed for the modern Indian woman.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── COLLECTION ────────────────────────────────────────────── -->
+  <section id="collection">
+    <div class="wrap">
+      <div class="collection-grid">
+        <div class="col-img-wrap reveal-l">
+          <div class="col-img-frame">
+            <img src="collection_banner.jpg" alt="CottonNBox Collection" loading="lazy" />
+          </div>
+          <div class="col-badge">New<br>Collection<br>2025</div>
+        </div>
+        <div class="col-text reveal-r">
+          <div class="sec-label">Our Signature Collection</div>
+          <h2 class="sec-title">The Art of<br><em>Indian</em> Cotton</h2>
+          <p class="sec-body">
+            Each piece tells a story — of ancient printing traditions, of sun-drenched cotton fields, of women who carry grace effortlessly.
+          </p>
+          <ul class="col-list">
+            <li>Hand block printed with natural, eco-friendly dyes</li>
+            <li>100% pure cotton — breathable &amp; comfortable all day</li>
+            <li>Inspired by Rajasthani, Gujarati &amp; Mughal motifs</li>
+            <li>Available in sizes XS to 3XL — inclusive sizing</li>
+            <li>Individually quality-checked by master craftspeople</li>
+            <li>Sustainably produced, ethically sourced</li>
+          </ul>
+          <a href="#notify" class="btn-primary" style="display:inline-flex;">
+            <span>Join the Waitlist</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── PILLARS ────────────────────────────────────────────────── -->
+  <section id="pillars">
+    <div class="wrap">
+      <div class="pillars-header">
+        <div class="sec-label reveal" style="justify-content:center;">Our Founding Pillars</div>
+        <h2 class="sec-title reveal delay-1" style="text-align:center;">Built on <em>Timeless</em> Values</h2>
+        <p class="sec-body reveal delay-2" style="text-align:center;margin:0 auto;">
+          Every decision we make is guided by four unwavering principles.
+        </p>
+      </div>
+      <div class="pillars-grid reveal">
+        <div class="pillar">
+          <div class="pillar-num">01</div>
+          <div class="pillar-title">Pure Origins</div>
+          <p class="pillar-text">We source only 100% pure cotton, directly from trusted farmers across India's finest cotton-growing regions.</p>
+        </div>
+        <div class="pillar">
+          <div class="pillar-num">02</div>
+          <div class="pillar-title">Heritage Craft</div>
+          <p class="pillar-text">Our artisans carry forward centuries-old techniques — block printing, hand embroidery, and natural dyeing.</p>
+        </div>
+        <div class="pillar">
+          <div class="pillar-num">03</div>
+          <div class="pillar-title">Uncompromised Quality</div>
+          <p class="pillar-text">Every kurti undergoes a rigorous 12-point quality check before it earns the CottonNBox seal of luxury.</p>
+        </div>
+        <div class="pillar">
+          <div class="pillar-num">04</div>
+          <div class="pillar-title">Conscious Fashion</div>
+          <p class="pillar-text">Sustainable practices, fair wages, and eco-friendly processes — because luxury should never cost the earth.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── HEALTH BENEFITS ────────────────────────────────────────── -->
+  <section id="health">
+    <div class="health-hero" style="background-image:url('health_benefits_bg.jpg')">
+      <div class="health-hero-overlay"></div>
+      <div class="wrap health-hero-inner reveal">
+        <div class="sec-label">Wear What Nature Intended</div>
+        <h2 class="sec-title">Why Cotton Kurtis are<br><em>Good for Your Body</em></h2>
+        <p class="sec-body" style="max-width:640px;margin:0 auto;">Pure cotton is not just a fabric — it is a wellness choice. Worn by Indian women for centuries, cotton kurtis offer benefits that go far beyond comfort and style.</p>
+      </div>
+    </div>
+    <div class="wrap">
+      <div class="health-grid">
+
+        <div class="health-card reveal">
+          <div class="hc-icon">&#9685;</div>
+          <h3 class="hc-title">Breathes with Your Skin</h3>
+          <p class="hc-body">Cotton's natural open-weave structure allows air to circulate freely between the fabric and your skin, preventing heat build-up and keeping your body temperature regulated — especially vital in India's warm climate.</p>
+        </div>
+
+        <div class="health-card reveal">
+          <div class="hc-icon">&#9676;</div>
+          <h3 class="hc-title">Moisture-Wicking & Sweat-Absorbing</h3>
+          <p class="hc-body">Cotton can absorb up to 27 times its own weight in water. It draws perspiration away from the skin and allows it to evaporate, keeping you dry, fresh, and odour-free throughout the day.</p>
+        </div>
+
+        <div class="health-card reveal">
+          <div class="hc-icon">&#10022;</div>
+          <h3 class="hc-title">Hypoallergenic & Skin-Safe</h3>
+          <p class="hc-body">Unlike synthetic fabrics that contain chemical residues, 100% pure cotton is naturally hypoallergenic. It does not irritate sensitive skin, making it the ideal choice for women prone to rashes, eczema, or allergies.</p>
+        </div>
+
+        <div class="health-card reveal">
+          <div class="hc-icon">&#9672;</div>
+          <h3 class="hc-title">Reduces Skin Friction & Chafing</h3>
+          <p class="hc-body">The soft, smooth texture of cotton minimises friction against the skin. Loose-fit cotton kurtis allow unrestricted movement, reducing the risk of skin irritation, chafing, and discomfort during long wear.</p>
+        </div>
+
+        <div class="health-card reveal">
+          <div class="hc-icon">&#9670;</div>
+          <h3 class="hc-title">Thermal Comfort in All Seasons</h3>
+          <p class="hc-body">Cotton acts as a natural insulator — cool in summer and warm in winter. Its hollow fibres trap air, providing a natural thermal buffer that adapts to your body's needs across every season.</p>
+        </div>
+
+        <div class="health-card reveal">
+          <div class="hc-icon">&#9775;</div>
+          <h3 class="hc-title">Free from Harmful Chemicals</h3>
+          <p class="hc-body">Pure cotton kurtis contain no synthetic polymers, microplastics, or chemical finishes that leach into the skin. Wearing natural cotton means your body is not absorbing toxins — a choice as healthy as it is conscious.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── COTTON JOURNEY ────────────────────────────────────────────── -->
+  <section id="journey">
+    <div class="journey-hero" style="background-image:url('cotton_journey_bg.jpg')">
+      <div class="journey-hero-overlay"></div>
+      <div class="wrap journey-hero-inner reveal">
+        <div class="sec-label">From Seed to Soul</div>
+        <h2 class="sec-title">The Cotton Journey —<br><em>Field to Fabric</em></h2>
+        <p class="sec-body" style="max-width:640px;margin:0 auto;">Every CottonNBox kurti carries within it a story that begins in the sun-drenched fields of India and ends in the hands of a master artisan. Here is that journey.</p>
+      </div>
+    </div>
+    <div class="wrap">
+      <div class="journey-timeline">
+
+        <div class="jt-step reveal-l">
+          <div class="jt-num">01</div>
+          <div class="jt-content">
+            <h3 class="jt-title">Seed Selection &amp; Sowing</h3>
+            <p class="jt-body">Every journey begins in the fertile black soil of Gujarat, Maharashtra, and Telangana — India's cotton heartland. Farmers carefully select high-quality cotton seeds and sow them between April and June, when the monsoon rains arrive to nourish the earth.</p>
+          </div>
+        </div>
+
+        <div class="jt-step reveal-r">
+          <div class="jt-num">02</div>
+          <div class="jt-content">
+            <h3 class="jt-title">Growing &amp; Cultivation</h3>
+            <p class="jt-body">Over 150–180 days, the cotton plant grows under careful tending — watered, weeded, and nurtured by generations of farming families. The plants bloom with delicate white flowers that transform into cotton bolls, bursting open to reveal the soft white fibre inside.</p>
+          </div>
+        </div>
+
+        <div class="jt-step reveal-l">
+          <div class="jt-num">03</div>
+          <div class="jt-content">
+            <h3 class="jt-title">Harvesting the Bolls</h3>
+            <p class="jt-body">Between October and February, the ripe cotton bolls are harvested — often by hand in traditional Indian farms, preserving the integrity of the fibre. Hand-picking ensures only the finest, fully matured bolls are selected, resulting in longer, stronger fibres.</p>
+          </div>
+        </div>
+
+        <div class="jt-step reveal-r">
+          <div class="jt-num">04</div>
+          <div class="jt-content">
+            <h3 class="jt-title">Ginning — Separating Fibre from Seed</h3>
+            <p class="jt-body">The harvested cotton is taken to a ginning mill, where the raw fibre is mechanically separated from the seeds. The clean cotton lint is then compressed into large bales and transported to spinning mills across India.</p>
+          </div>
+        </div>
+
+        <div class="jt-step reveal-l">
+          <div class="jt-num">05</div>
+          <div class="jt-content">
+            <h3 class="jt-title">Spinning — Fibre to Yarn</h3>
+            <p class="jt-body">At the spinning mill, cotton fibres are cleaned, carded (combed to align the fibres), and drawn into fine strands. These strands are twisted together under tension to form yarn — the foundation of every fabric. The count of the yarn determines the final softness of the kurti.</p>
+          </div>
+        </div>
+
+        <div class="jt-step reveal-r">
+          <div class="jt-num">06</div>
+          <div class="jt-content">
+            <h3 class="jt-title">Weaving — Yarn to Fabric</h3>
+            <p class="jt-body">The spun yarn is woven on looms — both traditional handlooms and modern power looms — into cotton fabric. The weave structure determines the texture: fine muslin, sturdy cambric, or soft voile. Our artisans prefer handloom-woven fabric for its unique character and breathability.</p>
+          </div>
+        </div>
+
+        <div class="jt-step reveal-l">
+          <div class="jt-num">07</div>
+          <div class="jt-content">
+            <h3 class="jt-title">Dyeing &amp; Block Printing</h3>
+            <p class="jt-body">The woven fabric is washed, bleached, and prepared for dyeing using natural or azo-free dyes. Master block printers then hand-carve intricate motifs onto wooden blocks and press them onto the fabric — a craft passed down through generations in Rajasthan, Gujarat, and Andhra Pradesh.</p>
+          </div>
+        </div>
+
+        <div class="jt-step reveal-r">
+          <div class="jt-num">08</div>
+          <div class="jt-content">
+            <h3 class="jt-title">Cutting, Stitching &amp; Finishing</h3>
+            <p class="jt-body">Skilled tailors cut the printed fabric according to precise kurti patterns and stitch each piece with care. Embroidery, mirror work, or lace detailing is added by hand. Each kurti then undergoes a rigorous 12-point quality check before it receives the CottonNBox seal of approval.</p>
+          </div>
+        </div>
+
+        <div class="jt-step jt-final reveal">
+          <div class="jt-num">09</div>
+          <div class="jt-content">
+            <h3 class="jt-title">Delivered to You</h3>
+            <p class="jt-body">Wrapped in sustainable packaging and sealed with our signature ribbon, your CottonNBox kurti completes its journey — from a seed in Indian soil to a story you wear with pride. Every thread carries the warmth of the artisan who made it.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── QUOTE ──────────────────────────────────────────────────── -->
+  <section id="quote">
+    <div class="quote-bg-text">Heritage</div>
+    <div class="quote-inner reveal">
+      <span class="quote-mark">"</span>
+      <p class="quote-text">
+        Wear the stories of a thousand artisans. Feel the warmth of Indian cotton. Carry the grace of a heritage that never fades.
+      </p>
+      <div class="quote-rule"></div>
+      <p class="quote-author">— The CottonNBox Philosophy</p>
+    </div>
+  </section>
+
+  <!-- ── NOTIFY ─────────────────────────────────────────────────── -->
+  <section id="notify">
+    <div class="wrap">
+      <div class="notify-grid">
+        <div class="notify-text reveal-l">
+          <div class="sec-label">Be the First to Know</div>
+          <h2 class="sec-title">Join the<br><em>Inner Circle</em></h2>
+          <p class="sec-body">
+            Get exclusive early access, launch offers, and behind-the-scenes stories delivered straight to your inbox. No spam — only elegance.
+          </p>
+        </div>
+        <div class="notify-form-wrap reveal-r">
+          <!-- Form shown before submission -->
+          <div id="formArea">
+            <form
+              id="waitlistForm"
+              class="notify-form"
+              action="https://formspree.io/f/xykbvwbv"
+              method="POST"
+              onsubmit="handleNotify(event)"
+            >
+              <input type="hidden" name="_subject" value="New CottonNBox Waitlist Signup" />
+              <input type="hidden" name="_next" value="" />
+              <input
+                type="email" name="email" class="notify-input" id="notifyEmail"
+                placeholder="Your email address" required autocomplete="email"
+              />
+              <button type="submit" class="notify-btn" id="notifySubmitBtn">Notify Me</button>
+            </form>
+            <p class="notify-privacy">We respect your privacy. No spam, ever. Unsubscribe anytime.</p>
+          </div>
+          <!-- Confirmation shown after submission -->
+          <div id="alreadyJoined" style="display:none;">
+            <div class="waitlist-confirmed">
+              <div class="wc-icon">✦</div>
+              <p class="wc-title">You're on the list!</p>
+              <p class="wc-sub">We'll reach out to <span id="confirmedEmail"></span> the moment we launch. Stay close.</p>
+            </div>
+          </div>
+          <div class="notify-socials">
+            <a href="https://www.instagram.com/cottonnbox_official/" target="_blank" rel="noopener" class="social-btn">
+              <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+              Instagram
+            </a>
+            <a href="https://www.facebook.com/cottonnbox" target="_blank" rel="noopener" class="social-btn">
+              <svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+              Facebook
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FOOTER ─────────────────────────────────────────────────── -->
+  <footer>
+    <div class="wrap">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="nav-logo-wrap">
+            <div class="nav-logo">CottonNBox</div>
+            <div class="nav-logo-sub">Pure Cotton · Pure Elegance</div>
+          </div>
+          <p class="footer-brand-desc">
+            CottonNBox is an ultra-premium ethnic Indian Kurti brand rooted in the rich textile heritage of India. Every piece is a celebration of craftsmanship, comfort, and timeless style.
+          </p>
+          <div class="footer-social">
+            <a href="https://www.instagram.com/cottonnbox_official/" target="_blank" rel="noopener" aria-label="Instagram">
+              <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+            </a>
+            <a href="https://www.facebook.com/cottonnbox" target="_blank" rel="noopener" aria-label="Facebook">
+              <svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+            </a>
+          </div>
+        </div>
+        <div class="footer-cols-mobile">
+        <div class="footer-col">
+          <h4>Explore</h4>
+          <ul>
+            <li><a href="#collection">Our Collection</a></li>
+            <li><a href="#features">The Craft</a></li>
+            <li><a href="#pillars">Our Heritage</a></li>
+            <li><a href="#countdown">Launch Date</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Connect</h4>
+          <ul>
+            <li><a href="https://www.instagram.com/cottonnbox_official/" target="_blank">Instagram</a></li>
+            <li><a href="https://www.facebook.com/cottonnbox" target="_blank">Facebook</a></li>
+            <li><a href="#notify">Newsletter</a></li>
+          </ul>
+        </div>
+        </div><!-- /.footer-cols-mobile -->
+        <div class="footer-col footer-col-legal">
+          <h4>Legal &amp; Help</h4>
+          <ul>
+            <li><a href="privacy-policy.html">Privacy Policy</a></li>
+            <li><a href="terms.html">Terms &amp; Conditions</a></li>
+            <li><a href="help.html">Help &amp; Support</a></li>
+            <li><a href="faqs.html">FAQs</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-copy">&copy; <span id="copy-year"></span> CottonNBox. All rights reserved.</p>
+        <p class="footer-tagline">Pure Cotton. Pure Elegance. Pure India.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ── SCRIPTS ────────────────────────────────────────────────── -->
+  <script>
+    /* ── CURSOR GLOW ───────────────────────────────────────────── */
+    const glow = document.getElementById('cursorGlow');
+    document.addEventListener('mousemove', e => {
+      glow.style.left = e.clientX + 'px';
+      glow.style.top  = e.clientY + 'px';
+    });
+
+    /* ── PERSISTENT 40-DAY COUNTDOWN ──────────────────────────── */
+    (function() {
+      const KEY = 'cottonnbox_v2_launch';
+      const TOTAL = 40 * 24 * 60 * 60 * 1000;
+      let target = localStorage.getItem(KEY);
+      if (!target) {
+        target = Date.now() + TOTAL;
+        localStorage.setItem(KEY, target);
+      } else {
+        target = parseInt(target, 10);
+      }
+
+      function pad(n) { return String(n).padStart(2, '0'); }
+
+      function tick() {
+        const now  = Date.now();
+        const diff = Math.max(0, target - now);
+
+        const days  = Math.floor(diff / 86400000);
+        const hours = Math.floor((diff % 86400000) / 3600000);
+        const mins  = Math.floor((diff % 3600000)  / 60000);
+        const secs  = Math.floor((diff % 60000)    / 1000);
+
+        document.getElementById('cd-days').textContent  = pad(days);
+        document.getElementById('cd-hours').textContent = pad(hours);
+        document.getElementById('cd-mins').textContent  = pad(mins);
+        document.getElementById('cd-secs').textContent  = pad(secs);
+
+        // Progress bar
+        const elapsed = TOTAL - diff;
+        const pct = Math.min(100, Math.round((elapsed / TOTAL) * 100));
+        document.getElementById('progressFill').style.width = pct + '%';
+        document.getElementById('progressPct').textContent  = pct + '%';
+
+        if (diff === 0) {
+          document.querySelector('.countdown-nums').innerHTML =
+            '<p style="font-family:var(--font-display);font-size:2rem;color:var(--rose-light);padding:40px 0;">We are Live! ✦</p>';
+        }
+      }
+
+      tick();
+      setInterval(tick, 1000);
+    })();
+
+    /* ── NAVBAR SCROLL ─────────────────────────────────────────── */
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 60);
+    }, { passive: true });
+
+    /* ── DYNAMIC COPYRIGHT YEAR ─────────────────────────────── */
+    document.getElementById('copy-year').textContent = new Date().getFullYear();
+
+    /* ── MOBILE NAV ────────────────────────────────────────────── */
+    document.getElementById('navToggle').addEventListener('click', () => {
+      document.getElementById('navLinks').classList.toggle('open');
+    });
+    document.querySelectorAll('#navLinks a').forEach(a => {
+      a.addEventListener('click', () => document.getElementById('navLinks').classList.remove('open'));
+    });
+
+    /* ── SCROLL REVEAL ─────────────────────────────────────────── */
+    const ro = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('in'); ro.unobserve(e.target); }
+      });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal, .reveal-l, .reveal-r').forEach(el => ro.observe(el));
+
+    /* ── HERO PARALLAX ─────────────────────────────────────────── */
+    const heroBg = document.getElementById('heroBg');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY < window.innerHeight) {
+        heroBg.style.transform = `translateY(${window.scrollY * 0.3}px)`;
+      }
+    }, { passive: true });
+
+    /* ── WAITLIST ONE-TIME LOCK ────────────────────────────────── */
+    const WAITLIST_KEY = 'cottonnbox_waitlist_joined';
+
+    function showConfirmed(email) {
+      document.getElementById('formArea').style.display    = 'none';
+      document.getElementById('alreadyJoined').style.display = 'block';
+      if (email) document.getElementById('confirmedEmail').textContent = email;
+    }
+
+    // On page load — if already joined, skip the form immediately
+    (function() {
+      const saved = localStorage.getItem(WAITLIST_KEY);
+      if (saved) showConfirmed(saved);
+    })();
+
+    /* ── NOTIFY FORM SUBMIT ────────────────────────────────────── */
+    async function handleNotify(e) {
+      e.preventDefault();
+
+      // Guard: already submitted
+      if (localStorage.getItem(WAITLIST_KEY)) {
+        showConfirmed(localStorage.getItem(WAITLIST_KEY));
+        return;
+      }
+
+      const form  = document.getElementById('waitlistForm');
+      const email = document.getElementById('notifyEmail').value.trim();
+      const btn   = document.getElementById('notifySubmitBtn');
+
+      // Disable button & show loading state
+      btn.textContent = 'Sending…';
+      btn.disabled    = true;
+
+      try {
+        const data = new FormData(form);
+        const res  = await fetch('https://formspree.io/f/xykbvwbv', {
+          method:  'POST',
+          body:    data,
+          headers: { 'Accept': 'application/json' }
+        });
+
+        if (res.ok) {
+          // Lock this browser permanently
+          localStorage.setItem(WAITLIST_KEY, email);
+          showConfirmed(email);
+        } else {
+          // Server error — re-enable
+          btn.textContent = 'Notify Me';
+          btn.disabled    = false;
+          const errEl = document.createElement('p');
+          errEl.style.cssText = 'margin-top:12px;font-family:var(--font-serif);font-size:0.9rem;color:#e07070;font-style:italic;';
+          errEl.textContent = 'Something went wrong. Please try again.';
+          form.parentNode.appendChild(errEl);
+          setTimeout(() => errEl.remove(), 4000);
+        }
+      } catch (err) {
+        btn.textContent = 'Notify Me';
+        btn.disabled    = false;
+      }
+    }
+  </script>
+</body>
+</html>

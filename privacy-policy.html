@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Privacy Policy — CottonNBox</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --black:      #080608;
+      --black-rich: #0d0a0c;
+      --ivory:      #f5f0e8;
+      --rose-gold:  #C4956A;
+      --rose-light: #d4a97a;
+      --rose-pale:  #e8c9a0;
+      --border:     rgba(196,149,106,0.15);
+      --text-muted: rgba(245,240,232,0.65);
+      --text-faint: rgba(245,240,232,0.4);
+      --font-display: 'Playfair Display', serif;
+      --font-serif:   'Cormorant Garamond', serif;
+      --font-sans:    'Jost', sans-serif;
+    }
+    html { scroll-behavior: smooth; }
+    body { background: var(--black); color: var(--ivory); font-family: var(--font-sans); -webkit-font-smoothing: antialiased; }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 22px 48px;
+      background: rgba(8,6,8,0.95);
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(12px);
+    }
+    .nav-logo-wrap { display: flex; flex-direction: column; gap: 2px; }
+    .nav-logo { font-family: var(--font-sans); font-size: 1.05rem; font-weight: 500; letter-spacing: 0.3em; text-transform: uppercase; color: var(--ivory); }
+    .nav-logo-sub { font-family: var(--font-serif); font-size: 0.6rem; font-weight: 300; letter-spacing: 0.25em; text-transform: uppercase; color: var(--rose-gold); }
+    .nav-back { font-family: var(--font-sans); font-size: 0.65rem; font-weight: 400; letter-spacing: 0.18em; text-transform: uppercase; color: var(--text-muted); text-decoration: none; display: flex; align-items: center; gap: 8px; transition: color 0.3s; }
+    .nav-back:hover { color: var(--rose-light); }
+    .nav-back::before { content: '←'; font-size: 0.9rem; }
+
+    /* WRAP */
+    .wrap { max-width: 860px; margin: 0 auto; padding: 0 40px; }
+
+    /* PAGE HERO */
+    .page-hero {
+      padding: 160px 0 80px;
+      text-align: center;
+      border-bottom: 1px solid var(--border);
+      background: linear-gradient(to bottom, rgba(196,149,106,0.04) 0%, transparent 100%);
+    }
+    .page-label {
+      font-family: var(--font-sans); font-size: 0.58rem; font-weight: 500;
+      letter-spacing: 0.38em; text-transform: uppercase;
+      color: var(--rose-gold); margin-bottom: 16px; display: block;
+    }
+    .page-title {
+      font-family: var(--font-display); font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 400; color: var(--ivory); margin-bottom: 16px;
+    }
+    .page-date {
+      font-family: var(--font-serif); font-size: 0.85rem; font-style: italic;
+      color: var(--text-faint);
+    }
+
+    /* CONTENT */
+    .page-content { padding: 80px 0 120px; }
+    .page-content h2 {
+      font-family: var(--font-display); font-size: 1.4rem; font-weight: 500;
+      color: var(--ivory); margin: 52px 0 16px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--border);
+    }
+    .page-content h2:first-child { margin-top: 0; }
+    .page-content p {
+      font-family: var(--font-serif); font-size: 1rem; font-weight: 300;
+      color: var(--text-muted); line-height: 1.9; margin-bottom: 16px;
+    }
+    .page-content ul {
+      list-style: none; margin: 0 0 20px 0; padding: 0;
+    }
+    .page-content ul li {
+      font-family: var(--font-serif); font-size: 1rem; font-weight: 300;
+      color: var(--text-muted); line-height: 1.9;
+      padding: 6px 0 6px 20px;
+      position: relative;
+    }
+    .page-content ul li::before {
+      content: '✦';
+      position: absolute; left: 0;
+      color: var(--rose-gold); font-size: 0.5rem; top: 12px;
+    }
+    .page-content a { color: var(--rose-light); text-decoration: none; border-bottom: 1px solid rgba(196,149,106,0.3); transition: border-color 0.3s; }
+    .page-content a:hover { border-color: var(--rose-light); }
+    .highlight-box {
+      border: 1px solid var(--border);
+      background: rgba(196,149,106,0.04);
+      padding: 28px 32px;
+      margin: 28px 0;
+      position: relative;
+    }
+    .highlight-box::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--rose-gold), transparent);
+    }
+    .highlight-box p { margin-bottom: 0; }
+
+    /* FOOTER */
+    footer {
+      background: var(--black-rich);
+      border-top: 1px solid var(--border);
+      padding: 40px 0;
+      text-align: center;
+    }
+    .footer-copy {
+      font-family: var(--font-sans); font-size: 0.62rem;
+      color: var(--text-faint); letter-spacing: 0.1em; margin-bottom: 8px;
+    }
+    .footer-tagline {
+      font-family: var(--font-serif); font-size: 0.88rem;
+      font-style: italic; color: rgba(196,149,106,0.35);
+    }
+    .footer-links {
+      display: flex; justify-content: center; gap: 32px;
+      margin-bottom: 20px; flex-wrap: wrap;
+    }
+    .footer-links a {
+      font-family: var(--font-sans); font-size: 0.62rem; font-weight: 300;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--text-faint); text-decoration: none; transition: color 0.3s;
+    }
+    .footer-links a:hover { color: var(--rose-light); }
+
+    @media (max-width: 768px) {
+      nav { padding: 18px 24px; }
+      .wrap { padding: 0 24px; }
+      .page-hero { padding: 130px 0 60px; }
+      .page-content { padding: 56px 0 80px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="nav-logo-wrap">
+      <div class="nav-logo">CottonNBox</div>
+      <div class="nav-logo-sub">Pure Cotton · Pure Elegance</div>
+    </div>
+    <a href="index.html" class="nav-back">Back to Home</a>
+  </nav>
+
+  <div class="page-hero">
+    <div class="wrap">
+      <span class="page-label">Legal</span>
+      <h1 class="page-title">Privacy Policy</h1>
+      <p class="page-date">Last updated: April 2026</p>
+    </div>
+  </div>
+
+  <div class="page-content">
+    <div class="wrap">
+
+      <div class="highlight-box">
+        <p>At CottonNBox, your privacy is not a formality — it is a commitment. This policy explains what information we collect, how we use it, and the choices you have. We will never sell your personal data.</p>
+      </div>
+
+      <h2>1. Information We Collect</h2>
+      <p>When you interact with CottonNBox — whether by joining our waitlist, browsing our website, or contacting us — we may collect the following types of information:</p>
+      <ul>
+        <li><strong>Email address</strong> — when you sign up for our waitlist or newsletter.</li>
+        <li><strong>Name</strong> — if you voluntarily provide it in a form or message.</li>
+        <li><strong>Device and browser information</strong> — collected automatically via cookies and analytics tools (e.g., browser type, operating system, referring URL).</li>
+        <li><strong>Usage data</strong> — pages visited, time spent, and interactions on our website.</li>
+        <li><strong>Location data</strong> — approximate country/region inferred from your IP address.</li>
+      </ul>
+      <p>We do not collect payment information on this website at this time. Any future payment processing will be handled by certified third-party payment gateways.</p>
+
+      <h2>2. How We Use Your Information</h2>
+      <p>The information we collect is used solely to improve your experience and communicate with you about CottonNBox. Specifically, we use it to:</p>
+      <ul>
+        <li>Send you launch announcements, exclusive early-access offers, and brand updates (only if you have opted in).</li>
+        <li>Understand how visitors use our website so we can improve its design and content.</li>
+        <li>Respond to enquiries and support requests you submit to us.</li>
+        <li>Prevent fraud and ensure the security of our platform.</li>
+      </ul>
+      <p>We will never use your data for unsolicited advertising, and we will never share, rent, or sell your personal information to third parties for their marketing purposes.</p>
+
+      <h2>3. Cookies & Tracking Technologies</h2>
+      <p>Our website uses cookies — small text files stored on your device — to enhance your browsing experience. We use:</p>
+      <ul>
+        <li><strong>Essential cookies</strong> — required for the website to function (e.g., storing your waitlist status to prevent duplicate submissions).</li>
+        <li><strong>Analytics cookies</strong> — to understand visitor behaviour and improve our content (e.g., page views, session duration).</li>
+      </ul>
+      <p>You may disable cookies through your browser settings at any time. Please note that disabling essential cookies may affect certain features of the website.</p>
+
+      <h2>4. Data Sharing & Third Parties</h2>
+      <p>We use a limited number of trusted third-party services to operate our website. These include:</p>
+      <ul>
+        <li><strong>Formspree</strong> — to receive and store waitlist form submissions securely.</li>
+        <li><strong>Google Fonts</strong> — to serve typography assets.</li>
+        <li><strong>Instagram & Facebook</strong> — linked for social engagement; their respective privacy policies apply when you visit those platforms.</li>
+      </ul>
+      <p>Each of these services operates under their own privacy policies and data protection standards. We do not share your data with any other third parties without your explicit consent.</p>
+
+      <h2>5. Data Retention</h2>
+      <p>We retain your email address and any submitted information for as long as necessary to fulfil the purposes described in this policy, or until you request deletion. Waitlist data will be retained until the CottonNBox launch and subsequent communications, after which it will be reviewed and purged in accordance with applicable data protection laws.</p>
+
+      <h2>6. Your Rights</h2>
+      <p>You have the following rights regarding your personal data:</p>
+      <ul>
+        <li><strong>Access</strong> — request a copy of the personal data we hold about you.</li>
+        <li><strong>Correction</strong> — request that we correct inaccurate or incomplete information.</li>
+        <li><strong>Deletion</strong> — request that we delete your personal data from our records.</li>
+        <li><strong>Opt-out</strong> — unsubscribe from our communications at any time by clicking the unsubscribe link in any email we send.</li>
+      </ul>
+      <p>To exercise any of these rights, please contact us at <a href="mailto:cottonnbox@gmail.com">cottonnbox@gmail.com</a>.</p>
+
+      <h2>7. Children's Privacy</h2>
+      <p>CottonNBox does not knowingly collect personal information from individuals under the age of 13. If you believe a child has submitted personal information to us, please contact us and we will promptly delete it.</p>
+
+      <h2>8. Changes to This Policy</h2>
+      <p>We may update this Privacy Policy from time to time to reflect changes in our practices or applicable laws. When we do, we will update the "Last updated" date at the top of this page. We encourage you to review this policy periodically.</p>
+
+      <h2>9. Contact Us</h2>
+      <p>If you have any questions, concerns, or requests regarding this Privacy Policy, please reach out to us:</p>
+      <div class="highlight-box">
+        <p><strong>CottonNBox</strong><br>
+        Email: <a href="mailto:cottonnbox@gmail.com">cottonnbox@gmail.com</a><br>
+        Instagram: <a href="https://www.instagram.com/cottonnbox_official/" target="_blank">@cottonnbox_official</a></p>
+      </div>
+
+    </div>
+  </div>
+
+  <footer>
+    <div class="wrap">
+      <div class="footer-links">
+        <a href="privacy-policy.html">Privacy Policy</a>
+        <a href="terms.html">Terms &amp; Conditions</a>
+        <a href="help.html">Help &amp; Support</a>
+        <a href="faqs.html">FAQs</a>
+      </div>
+      <p class="footer-copy">&copy; <span id="copy-year"></span> CottonNBox. All rights reserved.</p>
+      <p class="footer-tagline">Pure Cotton. Pure Elegance. Pure India.</p>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('copy-year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
